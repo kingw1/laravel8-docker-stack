@@ -7,7 +7,6 @@ networks:
     driver: bridge
 
 services:
-
   # php service
   app:
     build:
@@ -85,9 +84,26 @@ services:
       # PMA_PASSWORD: 1234
       PMA_ARBITRARY: 1
     ports:
-      - 8200:80
+      - "8200:80"
     restart: always
     networks:
       - web_network
 
-
+  # react app service
+  reactapp:
+    build: frontend/
+    image: react-app
+    container_name: react_app
+    volumes:
+      - ./frontend:/usr/app
+      #bookmark
+      - /usr/app/node_modules
+    ports:
+      # - "3000:3000"
+      - "7878:80"
+    environment:
+      #hot reload
+      - CHOKIDAR_USEPOLLING=true
+    restart: always
+    networks:
+      - web_network
