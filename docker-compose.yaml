@@ -81,8 +81,9 @@ services:
     environment:
       PMA_HOST: db
       PMA_PORT: 3306
-      PMA_USER: admin
-      PMA_PASSWORD: 1234
+      # PMA_USER: admin
+      # PMA_PASSWORD: 1234
+      PMA_ARBITRARY: 1
     ports:
       - 8200:80
     restart: always
